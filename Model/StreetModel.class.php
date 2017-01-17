@@ -22,4 +22,9 @@ class StreetModel extends BaseModel{
         return $this->get($id, self::LEVEL_STREET);
     }
 
+    public function getStreetById($id){
+        $result = $this->where(['id' => $id])->find();
+        return $result;
+    }
+
 }

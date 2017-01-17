@@ -21,5 +21,10 @@ class ProviceModel extends BaseModel{
         return $this->get(0, self::LEVEL_PROVINCE);
     }
 
+    public function getProvinceById($id){
+        $result = $this->where(['id' => $id])->find();
+        return $result;
+    }
+
 
 }

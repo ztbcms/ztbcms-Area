@@ -23,4 +23,9 @@ class DistrictModel extends BaseModel {
         return $this->get($id, self::LEVEL_DISTRICT);
     }
 
+    public function getDistrictById($id){
+        $result = $this->where(['id' => $id])->find();
+        return $result;
+    }
+
 }

@@ -22,6 +22,11 @@ class CityModel extends BaseModel{
         return $this->get($id, self::LEVEL_CITY);
     }
 
+    public function getCityById($id){
+        $result = $this->where(['id' => $id])->find();
+        return $result;
+    }
+
 
 
 }
