@@ -36,9 +36,8 @@ class BaseModel extends Model {
      */
     protected function get($parentid = 0, $level = '') {
         $condition = array();
-        if (!empty($parentid)) {
-            $condition['parentid'] = $parentid;
-        }
+        $condition['parentid'] = $parentid;
+
         if (!empty($level)) {
             $condition['level'] = $level;
         }
