@@ -18,18 +18,13 @@ use Think\Model;
  */
 class BaseModel extends Model {
 
-
-
     const LEVEL_PROVINCE = '1';//省份
     const LEVEL_CITY = '2';//市
     const LEVEL_DISTRICT = '3';//县区
     const LEVEL_STREET = '4';//街道
 
-
-
-
-
     /**
+     * 获取
      * @param int    $parentid
      * @param string $level
      * @return array
@@ -43,7 +38,7 @@ class BaseModel extends Model {
         }
         //按默认的行政地位排序
         $result = $this->where($condition)->select();
-//        echo $this->getLastSql();
+
         if (empty($result)) {
             $result = array();
         }
