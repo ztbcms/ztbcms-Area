@@ -12,7 +12,7 @@ return array(
 	//模块简介
 	'introduce' => '中国省份,城市,区镇,高校信息',
 	//模块介绍地址
-	'address' => 'http://ztbcms.com',
+	'address' => 'http://doc.ztbcms.com/module/area/',
 	//模块作者
 	'author' => 'ZtbCMS',
 	//作者地址
