@@ -11,7 +11,7 @@ namespace Area\Model;
  *
  * @package Area\Model
  */
-class ProviceModel extends BaseModel{
+class ProvinceModel extends BaseModel{
 
     protected $tableName = 'area_province';
 

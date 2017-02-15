@@ -8,7 +8,7 @@ namespace Area\Controller;
 
 use Area\Model\CityModel;
 use Area\Model\DistrictModel;
-use Area\Model\ProviceModel;
+use Area\Model\ProvinceModel;
 use Area\Model\SchoolModel;
 use Area\Model\StreetModel;
 use Common\Controller\Base;
@@ -68,7 +68,7 @@ class ApiController extends Base {
      * 省份
      */
     public function getProvinces() {
-        $ProvinceModel = new ProviceModel();
+        $ProvinceModel = new ProvinceModel();
 
         $this->ajaxReturn(array(
             'status' => 'success',
@@ -79,7 +79,7 @@ class ApiController extends Base {
     /**
      * 市
      *
-     * @param $id 省份ID
+     * @param int $id 省份ID
      */
     public function getCitiesByProvinceId($id) {
         $CityModel = new CityModel();
@@ -92,17 +92,17 @@ class ApiController extends Base {
 
     /**
      * 根据省份名称模糊搜索城市列表
-     * @param string $provice_name 省名
+     * @param string $province_name 省名
      */
-    public function getCitiesByProvince($provice_name = '') {
-        $ProvinceModel = new ProviceModel();
+    public function getCitiesByProvince($province_name = '') {
+        $ProvinceModel = new ProvinceModel();
         $where['areaname'] = array(
             'like',
-            $provice_name . "%"
+            $province_name . "%"
         );
-        $provice = $ProvinceModel->where($where)->find();
+        $province = $ProvinceModel->where($where)->find();
 
-        $id = $provice['id'];
+        $id = $province['id'];
         $CityModel = new CityModel();
         $this->ajaxReturn(array(
             'status' => 'success',
