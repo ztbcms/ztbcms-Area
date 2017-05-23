@@ -1,4 +1,4 @@
-v<Admintemplate file="Common/Head"/>
+<Admintemplate file="Common/Head"/>
 <body class="J_scroll_fixed">
 <div class="wrap">
     <div class="h_a">说明</div>
