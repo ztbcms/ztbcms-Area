@@ -132,6 +132,91 @@
         </script>
     </section>
 
+    <section>
+        <h3>样例3： 省市区联动(Vue) <small>请参考 Application/Area/View/Index/index.php</small></h3>
+        <div id="app">
+            <select v-model="provinceId" @change="getCityList(true);">
+                <option v-for="item in provinceList" :value="item.id">{{item.areaname}}</option>
+            </select>
+
+            <select v-model="cityId" @change="getDistrictList(true);">
+                <option v-for="item in cityList" :value="item.id">{{item.areaname}}</option>
+            </select>
+
+            <select v-model="districtId">
+                <option v-for="item in districtList" :value="item.id">{{item.areaname}}</option>
+            </select>
+
+        </div>
+
+        <script src="{$config_siteurl}statics/js/vue/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                data:　{
+                    //初始化地址
+                    provinceId: 0,
+                    cityId: 0,
+                    districtId: 0,
+
+                    provinceList: [],
+                    cityList: [],
+                    districtList: []
+                },
+                el: '#app',
+                methods: {
+                    getProvinceList: function(){
+                        $.ajax({
+                            url: '{:U("Area/Api/getProvinces")}',
+                            type: 'post',
+                            dataType: 'json',
+                            success: function(res){
+                                Vue.set(vm, 'provinceList', res.data);
+                                if(vm.provinceId == 0){
+                                    Vue.set(vm, 'provinceId', res.data[0]['id']);
+                                    vm.getCityList(true);
+                                }else{
+                                    vm.getCityList(false);
+                                }
+                            }
+                        });
+                    },
+                    getCityList: function(is_change){
+                        $.ajax({
+                            url: '{:U("Area/Api/getCitiesByProvinceId")}',
+                            data: {id: vm.provinceId},
+                            type: 'post',
+                            dataType: 'json',
+                            success: function(res){
+                                Vue.set(vm, 'cityList', res.data);
+                                if(is_change){
+                                    Vue.set(vm, 'cityId', res.data[0]['id']);
+                                }
+                                vm.getDistrictList(is_change);
+                            }
+                        });
+                    },
+                    getDistrictList: function(is_change){
+                        $.ajax({
+                            url: '{:U("Area/Api/getDistrictsByCityId")}',
+                            data: {id: vm.cityId},
+                            type: 'post',
+                            dataType: 'json',
+                            success: function(res){
+                                Vue.set(vm, 'districtList', res.data);
+                                if(is_change){
+                                    Vue.set(vm, 'districtId', res.data[0]['id']);
+                                }
+                            }
+                        });
+                    }
+                },
+                mounted: function(){
+                    this.getProvinceList();
+                }
+            });
+        </script>
+    </section>
+
 </div>
 
 
