@@ -3,7 +3,7 @@
 return array(
     array(
         //父菜单ID，NULL或者不写系统默认，0为顶级菜单
-        "parentid" => NULL,
+        "parentid" => 37,
         //地址，[模块/]控制器/方法
         "route" => "Area/Index/index",
         //类型，1：权限认证+菜单，0：只作为菜单
@@ -11,23 +11,12 @@ return array(
         //状态，1是显示，0不显示（需要参数的，建议不显示，例如编辑,删除等操作）
         "status" => 1,
         //名称
-        "name" => "中国区域模块",
+        "name" => "中国区域",
         //备注
-        "remark" => "中国区域模块！",
+        "remark" => "主要包含了中国省份、县区,乡镇，高校信息,常用于填写用户的所属的省市,如订单收货地址，高校名称检索等场景",
         //子菜单列表
         "child" => array(
-            // array(
-            //     "route" => "Search/Search/create",
-            //     "type" => 1,
-            //     "status" => 1,
-            //     "name" => "重建索引",
-            // ),
-            // array(
-            //     "route" => "Search/Search/searchot",
-            //     "type" => 1,
-            //     "status" => 1,
-            //     "name" => "热门搜索",
-            // ),
+
         ),
     ),
 );
