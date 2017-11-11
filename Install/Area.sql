@@ -1,7 +1,3 @@
-
-# Dump of table cms_area_province
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `cms_area_province`;
 
 CREATE TABLE `cms_area_province` (
