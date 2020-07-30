@@ -17,7 +17,13 @@ class CityModel extends BaseModel{
 
 
     public function getCitiesByProvinceId($id) {
-        return $this->get($id, self::LEVEL_CITY);
+        // 设置缓存
+        $data = S('getCitiesBy'.$id);
+        if($data) return $data;
+
+        $data = $this->get($id, self::LEVEL_CITY);
+        S('getCitiesBy'.$id,$data,3600);
+        return $data;
     }
 
     public function getCityById($id){

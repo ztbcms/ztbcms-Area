@@ -16,7 +16,13 @@ class ProvinceModel extends BaseModel{
     protected $tableName = 'area_province';
 
     public function getProvinces() {
-        return $this->get(0, self::LEVEL_PROVINCE);
+        // 设置缓存
+        $data = S('getProvinces');
+        if($data) return $data;
+
+        $data = $this->get(0, self::LEVEL_PROVINCE);
+        S('getProvinces',$data,3600);
+        return $data;
     }
 
     public function getProvinceById($id){

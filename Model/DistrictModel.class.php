@@ -18,7 +18,13 @@ class DistrictModel extends BaseModel {
     protected $tableName = 'area_district';
 
     public function getDistrictsByCityId($id) {
-        return $this->get($id, self::LEVEL_DISTRICT);
+        // 设置缓存
+        $data = S('getDistrictsBy'.$id);
+        if($data) return $data;
+
+        $data = $this->get($id, self::LEVEL_DISTRICT);
+        S('getDistrictsBy'.$id,$data,3600);
+        return $data;
     }
 
     public function getDistrictById($id){
