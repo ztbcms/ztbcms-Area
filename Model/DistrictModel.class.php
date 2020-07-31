@@ -22,7 +22,13 @@ class DistrictModel extends BaseModel {
         $data = S('getDistrictsBy'.$id);
         if($data) return $data;
 
+        // 若区与市同名，且只有一个区，则使用第四级区域
         $data = $this->get($id, self::LEVEL_DISTRICT);
+        $city = (new CityModel)->where(['id'=>$id])->getField('areaname');
+        if(count($data) == 1 && $data[0]['areaname'] == $city){
+            $data = (new StreetModel)->getStreetsByDistrictId($data[0]['id']);
+        }
+
         S('getDistrictsBy'.$id,$data,3600);
         return $data;
     }
