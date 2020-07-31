@@ -4,3 +4,4 @@ DROP TABLE IF EXISTS `cms_area_province`;
 DROP TABLE IF EXISTS `cms_area_street`;
 DROP TABLE IF EXISTS `cms_area_school`;
 DROP TABLE IF EXISTS `cms_area_schooltype`;
+DROP TABLE IF EXISTS `cms_area_region`;
