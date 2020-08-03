@@ -17,7 +17,13 @@ class StreetModel extends BaseModel{
     protected $tableName = 'area_street';
 
     public function getStreetsByDistrictId($id) {
-        return $this->get($id, self::LEVEL_STREET);
+        // 设置缓存
+        $data = S('getStreetsBy'.$id);
+        if($data) return $data;
+
+        $data = $this->get($id, self::LEVEL_STREET);
+        S('getStreetsBy'.$id,$data,3600);
+        return $data;
     }
 
     public function getStreetById($id){

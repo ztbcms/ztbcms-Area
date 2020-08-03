@@ -162,4 +162,31 @@ class ApiController extends Base {
         ));
     }
 
+    /**
+     * 获取省市区树状
+     */
+    public function getAreaTree(){
+        $Area = S('getAreaTree');
+        if($Area){
+            $this->ajaxReturn(self::createReturn(true,$Area));
+        }
+
+        $ProvinceModel = new ProvinceModel();
+        $CityModel = new CityModel();
+        $DistrictModel = new DistrictModel();
+
+        $list = $ProvinceModel->getProvinces();
+        $data = [];
+        foreach ($list as $key =>  $province){
+            $data[$key]['areaname'] = $province['areaname'];
+            $data[$key]['children'] = $CityModel->getCitiesByProvinceId($province['id']);
+            foreach ($data[$key]['children']  as $cityKey => $child){
+                $data[$key]['children'][$cityKey]['children'] = $DistrictModel->getDistrictsByCityId($child['id']);
+            }
+        }
+        S('getAreaTree',$data,'3600');
+        $this->ajaxReturn(self::createReturn(true,$data));
+    }
+
+
 }
